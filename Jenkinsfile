@@ -9,7 +9,7 @@ pipeline {
         NEXUS_VERSION = "nexus2"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "vumxa95483dns.eastus2.cloudapp.azure.com:8081"
-        NEXUS_REPOSITORY = "pet-clinic-repo"
+        NEXUS_REPOSITORY = "100"
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
     stages {
