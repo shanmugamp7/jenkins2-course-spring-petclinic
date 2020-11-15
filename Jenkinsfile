@@ -13,7 +13,7 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
 		
-}
+
     stages {
 	notify('Started')
         
