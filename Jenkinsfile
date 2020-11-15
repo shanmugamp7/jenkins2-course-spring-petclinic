@@ -14,11 +14,10 @@ pipeline {
   }
 
   stages {
-    notify('Started')
-
     stage("Maven Build and test") {
       steps {
         script {
+		  notify('Started')
           sh "mvn clean package"
         }
       }
@@ -80,7 +79,7 @@ pipeline {
       }
     }
   }
-   stage("Publish to Nexus Repository Manager") {
+   stage("Deploy to QA slave") {
       steps {
         script {
 			build job: 'pet-clinic-deployment'
