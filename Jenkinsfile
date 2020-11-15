@@ -17,14 +17,7 @@ pipeline {
     stage("Maven Build and test") {
       steps {
         script {
-			try{
-				
-				sh "mvn clean package"
-				}
-				catch{
-					currentBuild.result='FAILURE'
-					notify("build failure")
-				}	
+				sh "mvn clean package"		
 			}
 		}
     }
@@ -93,6 +86,11 @@ pipeline {
 		}
 	}
 }
+	post {
+	failure {
+	notify('build failure')
+	}
+	}
 }
 def notify(status) {
   emailext(
