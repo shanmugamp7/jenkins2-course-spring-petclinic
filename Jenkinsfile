@@ -1,9 +1,12 @@
-
-
 node {
     notify('Started')
-   
-     stage('Code Quality Check via SonarQube') {
+		stage('build and test')
+		{
+			mvn clean package
+		}
+		
+     
+	 stage('Code Quality Check via SonarQube') {
 
      
        def scannerHome = tool 'sonar scanner';
@@ -30,13 +33,15 @@ node {
 	   
 	   
 	   
-      stage('archive') 
+      stage('archive') {
+	  
             publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/jacoco/', reportFiles: 'index.html', reportName: 'Code Coverage', reportTitles: ''])
              step([$class: 'JUnitResultArchiver', checksName: 'Tests', testResults: 'target/surefire-reports/TEST-*.xml'])
             archiveArtifacts artifacts: "target/*.?ar", followSymlinks: false
             
     }
-    
+    }
+	
    node{
    try{
   stage("publish to nexus") {
