@@ -12,13 +12,7 @@ pipeline {
         NEXUS_REPOSITORY = "100"
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
-		def notify(status){
-    emailext (
-      to: "shanmugamp7@grr.la",
-      subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
-    )
+		
 }
     stages {
 	notify('Started')
@@ -98,5 +92,13 @@ pipeline {
             }
         }
     }
+	void notify(status){
+    emailext (
+      to: "shanmugamp7@grr.la",
+      subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+    )
 
+}
 }
