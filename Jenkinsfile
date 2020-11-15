@@ -21,7 +21,7 @@ pipeline {
 			}
 		}
     }
-    stage('Publish Junit Test results') {
+    stage('Publish code coverage and Junit Test results') {
       steps {
         script {
           publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/jacoco/', reportFiles: 'index.html', reportName: 'Code Coverage', reportTitles: ''])
