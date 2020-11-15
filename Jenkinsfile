@@ -78,7 +78,7 @@ pipeline {
         }
       }
     }
-  }
+  
    stage("Deploy to QA slave") {
       steps {
         script {
@@ -86,6 +86,7 @@ pipeline {
 			}
 		}
 	}
+}
 }
 def notify(status) {
   emailext(
