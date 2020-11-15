@@ -14,10 +14,10 @@ pipeline {
     }
     stages {
         
-        stage("Maven Build") {
+        stage("Maven Build and test") {
             steps {
                 script {
-                    sh "mvn package -DskipTests=true"
+                    sh "mvn clean package"
                 }
             }
         }
