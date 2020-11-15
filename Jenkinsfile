@@ -8,7 +8,7 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus2"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "vumxa95483dns.eastus2.cloudapp.azure.com:8081"
+        NEXUS_URL = "vumxa95483dns.eastus2.cloudapp.azure.com:8081/nexus"
         NEXUS_REPOSITORY = "100"
         NEXUS_CREDENTIAL_ID = "Nexus"
     }
