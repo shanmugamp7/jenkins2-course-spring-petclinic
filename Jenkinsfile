@@ -78,7 +78,7 @@ pipeline {
       }
     }
   
-   stage("Deploy to QA slave") {
+   stage("Deploy to QA environment") {
       steps {
         script {
 			build job: 'pet-clinic-deployment'
