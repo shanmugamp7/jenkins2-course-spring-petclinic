@@ -17,10 +17,16 @@ pipeline {
     stage("Maven Build and test") {
       steps {
         script {
-		  notify('Started')
-          sh "mvn clean package"
-        }
-      }
+			try{
+				
+				sh "mvn clean package"
+				}
+				catch{
+					currentBuild.result='FAILURE'
+					notify("build failure")
+				}	
+			}
+		}
     }
     stage('Publish Junit Test results') {
       steps {
@@ -90,7 +96,7 @@ pipeline {
 }
 def notify(status) {
   emailext(
-  to: "shanmugamp7@grr.la", subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+  to: "shanmugamp7@maildrop.cc", subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
         <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""", )
 
 }
